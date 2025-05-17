@@ -6,5 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Cliente extends Model
 {
-    //
+    'nombre',
+    'email' ,
+    'telefono',
 }

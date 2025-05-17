@@ -6,5 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Proveedor extends Model
 {
-    //
+     use HasFactory;
+    public $fillable = [
+       'nombre',
+       'contacto'
+    ];
 }

@@ -4,12 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Compra extends Model
+class Task extends Model
 {
      use HasFactory;
     public $fillable = [
-       'proveedor_id',
-        'fecha',
-        'total',
+       'title',
+       'completed'
     ];
 }
