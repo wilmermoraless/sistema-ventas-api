@@ -6,32 +6,31 @@ use Illuminate\Http\Request;
 
 class AuthController extends Controller
 {
-//metodo para iniciar sesion
+    // Metodo para iniciar sesión
     public function login(Request $request)
     {
-        public function logout(Request $request)
-        {
-            //revocamos el token de acceso
-            auth()->user()->tokens()->delete();
-
-            return response()->json(['message' => 'Sesión cerrada correctamente']);
-        }
-        
-        //validamos los datos de entrada
+        // Validar los datos de entrada
         $request->validate([
             'email' => 'required|email',
             'password' => 'required',
         ]);
 
-        //verificamos las credenciales del usuario
-        if (!auth()->attempt($request->only('email', 'password'))) {
-            return response()->json(['message' => 'Credenciales incorrectas'], 401);
+        // Intentar autenticar al usuario
+        if (auth()->attempt($request->only('email', 'password'))) {
+            // Generar un token de acceso
+            $token = auth()->user()->createToken('access_token')->plainTextToken;
+
+            return response()->json(['token' => $token]);
         }
 
-        //generamos el token de acceso
-        $token = auth()->user()->createToken('access_token')->plainTextToken;
-
-        return response()->json(['token' => $token]);
+        return response()->json(['error' => 'Unauthorized'], 401);
     }
 
+    public function logout(Request $request)
+    {
+        // Revocar el token de acceso
+        auth()->user()->tokens()->delete();
+
+        return response()->json(['message' => 'Logged out successfully']);
+    }
 }
