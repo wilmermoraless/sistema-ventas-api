@@ -14,8 +14,11 @@ return new class extends Migration
         Schema::create('tasks', function (Blueprint $table) {
             $table->id();
             $table->string('title');
+            $table->text('description')->nullable();
             $table->boolean('completed')->default(false);
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
+             $table->enum('priority', ['low', 'medium', 'high'])->default('medium');
+            $table->timestamp('due_date')->nullable();
             $table->timestamps();
         });
     }

@@ -11,6 +11,7 @@ use App\Http\Controllers\Api\TaskController;
 
 
 //defunimos la ruta para la autenticacion
+Route::post('/register', [AuthController::class, 'register'])->name('register');
 Route::post('/login', [AuthController::class, 'login'])->name('login');
 
 // Definir las rutas para los productos, clientes, proveedores, ventas y compras
