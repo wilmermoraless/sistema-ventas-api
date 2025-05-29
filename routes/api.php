@@ -23,7 +23,7 @@ Route::post('/login', [AuthController::class, 'login'])->name('login');
     Route::apiResource('/proveedores', ProveedorController::class);
     Route::apiResource('/ventas', VentaController::class);
     Route::apiResource('/compras', CompraController::class);
-    Route::apiResource('tasks', TaskController::class);
+    Route::apiResource('/tasks', TaskController::class);
    
 
  });
