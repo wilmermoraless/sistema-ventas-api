@@ -1,9 +1,9 @@
 [build]
 builder = "nixpacks"
-buildCommand = "composer install --no-dev"
+buildCommand = "composer install --no-dev --optimize-autoloader"
 
 [deploy]
-startCommand = "php artisan config:clear && php artisan cache:clear && php artisan view:clear && php artisan route:clear && php artisan migrate --force && php artisan storage:link"
+startCommand = "php artisan config:clear && php artisan cache:clear && php artisan view:clear && php artisan route:clear && php artisan optimize && php artisan migrate --force && php artisan storage:link"
 healthcheckPath = "/"
 healthcheckTimeout = 100
 restartPolicy = "on-failure"
